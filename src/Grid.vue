@@ -56,8 +56,14 @@ export default {
   watch: {
     items: {
       handler: function(nextItems = [],oldItems) {
+        const indexList = []
+        nextItems.map(i=>i.index!==undefined && indexList.push(i.index))
         this.list = nextItems.map((item, index) => {
-          const _index = !isNaN(item.index) ? parseInt(item.index) : index
+          let _index = !isNaN(item.index) ? parseInt(item.index) : index
+          if(indexList.includes(index)){
+            index =  Math.max(indexList) + 1
+            indexList.push(Math.max(indexList) + 1)
+          }
           const _sort = !isNaN(item.sort) ? parseInt(item.sort) : index
           item = {
             ...item,

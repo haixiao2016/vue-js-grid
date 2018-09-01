@@ -233,10 +233,14 @@
             watch: {
                 items: {
                     handler: function() {
-                        var nextItems = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
-                        arguments[1];
-                        this.list = nextItems.map(function(item, index) {
-                            var _index = isNaN(item.index) ? index : parseInt(item.index), _sort = isNaN(item.sort) ? index : parseInt(item.sort);
+                        var nextItems = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [], indexList = (arguments[1], 
+                        []);
+                        nextItems.map(function(i) {
+                            return void 0 !== i.index && indexList.push(i.index);
+                        }), this.list = nextItems.map(function(item, index) {
+                            var _index = isNaN(item.index) ? index : parseInt(item.index);
+                            indexList.includes(index) && (index = Math.max(indexList) + 1, indexList.push(Math.max(indexList) + 1));
+                            var _sort = isNaN(item.sort) ? index : parseInt(item.sort);
                             return item = _extends({}, item, {
                                 index: _index,
                                 sort: _sort
