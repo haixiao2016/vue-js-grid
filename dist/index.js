@@ -234,11 +234,16 @@
                 items: {
                     handler: function() {
                         var nextItems = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : [];
+                        arguments[1];
                         this.list = nextItems.map(function(item, index) {
-                            return {
+                            var _index = isNaN(item.index) ? index : parseInt(item.index), _sort = isNaN(item.sort) ? index : parseInt(item.sort);
+                            return item = _extends({}, item, {
+                                index: _index,
+                                sort: _sort
+                            }), {
                                 item: item,
-                                index: index,
-                                sort: index
+                                index: _index,
+                                sort: _sort
                             };
                         });
                     },
@@ -503,7 +508,7 @@
     }, function(module, exports, __webpack_require__) {
         exports = module.exports = __webpack_require__(0)(), exports.push([ module.i, ".v-grid{display:block;position:relative;width:100%}", "" ]);
     }, function(module, exports, __webpack_require__) {
-        exports = module.exports = __webpack_require__(0)(), exports.push([ module.i, ".v-grid-item-wrapper{display:block;position:absolute;box-sizing:border-box;left:0;top:0;user-select:none;transform:translateZ(0);z-index:1}.v-grid-item-animate{transition:transform .8s ease}", "" ]);
+        exports = module.exports = __webpack_require__(0)(), exports.push([ module.i, ".v-grid-item-wrapper{display:block;position:absolute;box-sizing:border-box;left:0;top:0;user-select:none;transform:translateZ(0);z-index:1}.v-grid-item-animate{transition:transform .3s ease}", "" ]);
     }, function(module, exports, __webpack_require__) {
         __webpack_require__(14);
         var Component = __webpack_require__(1)(__webpack_require__(5), __webpack_require__(12), null, null);
@@ -558,7 +563,7 @@
                     on: {
                         mousedown: _vm.mousedown,
                         touchstart: function($event) {
-                            $event.stopPropagation(), _vm.mousedown($event);
+                            return $event.stopPropagation(), _vm.mousedown($event);
                         }
                     }
                 }, [ _vm._t("default") ], 2);
