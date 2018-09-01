@@ -52,6 +52,15 @@ export default {
     },
     deleteImg() {
       this.carouselImgList.pop()
+      const sortImg = []
+      this.carouselImgList.map((items, index) => {
+        sortImg.push({
+          ...items,
+          index: index,
+          sort: index
+        })
+      })
+      this.carouselImgList = sortImg
     },
     addImg() {
       this.carouselImgList.push({
@@ -59,7 +68,6 @@ export default {
         url:
           'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535790551623&di=0f67a3d44bac3e3bf7d92498924c5d09&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fsoft%2Fimages%2F2014%2F1002%2F20141002092318777.jpg'
       })
-      this.$forceUpdate()
     }
   }
 }
